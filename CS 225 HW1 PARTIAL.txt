@@ -1,0 +1,39 @@
+PROBLEM SET 1 - PYTHON - JOE LEVEILLE
+
+#QUESTION 0
+year = int(input('Enter a year: '))		
+if((year % 100 == 0 and year % 400 != 0) or year % 4 != 0):
+	print(year, " is not a leap year!")
+elif(year % 400 == 0 or year % 4 == 0):            #if part shouldn't be necessary, but it double checks
+	print(year," is absolutely a leap year!")
+
+#QUESTION 1
+int("3")	#Forcing the string "3" to become an integer, should be fine
+t = int(3.7)	#Forcing the floating point number 3.7 to become an integer, should truncate to 3
+print(t)
+int("3.7") 	#Forcing the string "3.7" to become an integer breaks python
+t = int(float("3.7"))#Forcing the string "3.7" to become a floating point number, should be fine, makes t = 3
+		#then forcing that floating point number 3.7 to become an integer, should be the same as line 2
+print(t)
+
+#QUESTION 2
+#Commented numbers are the order that the lines are run
+x = [4] #1 initializes the array x with the singular value of 4
+def antioch():
+    x.append(3)#4 append() adds the argument onto the end of the above-defined x array, because there is no x defined within this function
+def maynard():
+    x = [1, 2] #7 defines a new array x with different values (this is different than the other x because the first x is not global)
+    x.append(3)#8 adds a seperate item to the end of the array, making this x = [1,2,3]
+
+print(x) #2 prints the x that was defined outside of maynard()
+antioch()#3
+print(x) #5 prints the x that was defined outside of maynard()
+maynard()#6 
+print(x) #9 prints the x that was defined outside of maynard()
+
+''' The code has the following output:
+[4]
+[4,3]
+[4,3]
+'''
+
