@@ -62,12 +62,12 @@ if len(sys.argv)>=2:
 #Answer: it is only taking the items from index 1 onwards, instead of capturing the file name in index 0 as well
     numbs = sys.argv[1:]
     # QUESTION FOR YOU: What sort of thing is "numbs"?
-    #ANSWER: an array of the input arguments (as strings) from the command line
+    #ANSWER: a list of the input arguments (as strings) from the command line
     numbs = [int(x) for x in numbs  if x.isdigit()]
     if len(numbs)>0:
         comp, prim = separate(set(numbs))
         #So why does this print work?
-        #TODO: ANSWER: Because python helps print arrays nicely                     MORE HERE?
+        #ANSWER: Because python helps print lists nicely and sorted() returns a list. I'm not quite sure what this question is asking for other than that
         print("Composite: ", sorted(comp))
         print("Prime: ", sorted(prim))
         sys.exit()

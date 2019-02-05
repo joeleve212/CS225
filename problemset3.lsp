@@ -16,3 +16,20 @@
 
 ;;; Please submit your code as a text file, and a Word/libreoffice/etc document with screenshots of output,please.
 
+(cons 'a '(b c))
+(cons 'a (cons 'b (cons 'c nil)))
+(list 'a (cons 'b '(c))) - close to (a b c)
+
+(car (cdr (cdr (cdr '(1 2 3 4 5 6)))))
+OUTPUT: 4 
+
+(defun askem (string)
+  (format t "~A" string)
+  (read))
+(if (> (x (read)) (y (read))) (x) (y))
+
+
+;(defun greater (x y)
+ ; (if (> x y) x y))
+  ;(greater (2 1))
+
