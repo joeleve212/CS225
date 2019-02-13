@@ -18,9 +18,9 @@
 
 (cons 'a '(b c))
 (cons 'a (cons 'b (cons 'c nil)))
-(list 'a (cons 'b '(c))) - close to (a b c)
+(list 'a (cons 'b nil) (cons 'c nil))
 
-(car (cdr (cdr (cdr '(1 2 3 4 5 6)))))
+(defun fourth (car (cdr (cdr (cdr '(1 2 3 4 5 6))))))
 OUTPUT: 4 
 
 (defun askem (string)
@@ -33,3 +33,39 @@ OUTPUT: 4
  ; (if (> x y) x y))
   ;(greater (2 1))
 
+  
+  
+;QUESTION 10:
+
+(write-line "Hello World")
+v1:
+(defun list-of-nums (n)
+    (if (n==1) (1)
+    ((cons nums n)
+    (list-of-nums(n-1))))
+    )
+(let (x (read))
+	(format t "~%" (list-of-nums x)))
+
+	
+v2:
+(defun list-of-nums (n)
+    (if (eql n 1) (1)
+    ((cons nums n)
+    (list-of-nums (- n 1))))
+    )
+(let (x (read))
+	(format t "~%" (list-of-nums x)))
+	
+v3:
+(defun nums (n)
+    (format t "Running function")
+    (if (eql n 1) (format t "~A" 1)
+    (
+        (cons n (numList))
+        (nums (- n 1))))
+    )
+(format t "Test?~%")
+(let (numList nil)
+    (nums (read))
+    )
