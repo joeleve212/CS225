@@ -15,7 +15,7 @@
 
 
 ;;; Please submit your code as a text file, and a Word/libreoffice/etc document with screenshots of output,please.
-
+;Work from earlier problems:
 (cons 'a '(b c))
 (cons 'a (cons 'b (cons 'c nil)))
 (list 'a (cons 'b nil) (cons 'c nil))
@@ -27,45 +27,73 @@ OUTPUT: 4
   (format t "~A" string)
   (read))
 (if (> (x (read)) (y (read))) (x) (y))
-
-
-;(defun greater (x y)
- ; (if (> x y) x y))
-  ;(greater (2 1))
-
-  
   
 ;QUESTION 10:
 
-(write-line "Hello World")
-v1:
-(defun list-of-nums (n)
-    (if (n==1) (1)
-    ((cons nums n)
-    (list-of-nums(n-1))))
-    )
-(let (x (read))
-	(format t "~%" (list-of-nums x)))
+(defun listofnums (x)
+  (if (not (eql x 1)) 
+    (listofnums (- x 1)) () )
+  (format t "~A " x)
+  )
+(write-line "Input a number: ")
+(listofnums (read))
 
-	
-v2:
-(defun list-of-nums (n)
-    (if (eql n 1) (1)
-    ((cons nums n)
-    (list-of-nums (- n 1))))
+;                              INCLUDE OUTPUT PICTURE FILE
+
+
+;Question 11 version 1(works):
+
+(defun removemultiples (k nlist)
+    (format t "Inputs: ~A ~A ~%" k nlist)
+    (remove k nlist)
+    (loop for i in nlist do(
+        if (eql 0 (mod i k));test
+            (setf nlist (remove i nlist));then
+            (format t "~A is not a multiple of ~A~%" i k);else
+        )
     )
-(let (x (read))
-	(format t "~%" (list-of-nums x)))
-	
-v3:
-(defun nums (n)
-    (format t "Running function")
-    (if (eql n 1) (format t "~A" 1)
-    (
-        (cons n (numList))
-        (nums (- n 1))))
+    (format t "~%New list: ~A" nlist)
+)
+
+
+;Version 2 (also works):
+(defun removemultiples (k nlist)
+    (loop for num in nlist
+        do (
+        if (eql (mod num k) 0)
+            (setf nlist (remove num nlist))
+            (format t "No change")
+        )
+        ; (return '(1 3))
+        (print nlist)
     )
-(format t "Test?~%")
-(let (numList nil)
-    (nums (read))
+    (return nlist)
+)
+
+(format t "~A" (removemultiples 5 '(10 3 5 10 30 46)))
+
+;Full Version of Q10 & Q11 together :
+
+(defun removemultiples (k nlist)
+    (format t "Inputs: ~A ~A ~%" k nlist)
+    (loop for i in nlist do(
+        if (eql 0 (mod i k));test
+            (setf nlist (remove i nlist));then
+            (format t "~A is not a multiple of ~A~%" i k);else
+        )
     )
+    (setf nlist nlist)
+)
+
+(defun listofnums (x)
+    (setq numList nil)
+    (loop
+        (setq numList (cons x numList))
+        (setf x (- x 1))
+        (when (< x 1) (return numList))
+    )
+)
+
+(format t "New List: ~A" (removemultiples 3 (listofnums 6)))
+
+;       REMEMBER OUTPUT PIC FILE
