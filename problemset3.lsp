@@ -97,3 +97,27 @@ OUTPUT: 4
 (format t "New List: ~A" (removemultiples 3 (listofnums 6)))
 
 ;       REMEMBER OUTPUT PIC FILE
+
+; Question 12:
+
+(defun sieve (n) 
+    (setq primes nil)
+    (setq x 1)
+
+    (loop
+        (setq flag 7); 7 = prime, 4 = non-prime (0 and 1 are boring)
+        (loop for y from 2 to (/ x 2) do (
+            if (= (mod x y) 0) 
+                (setq flag 4)
+            )
+        )
+        (if (= flag 7)
+            (setq primes (cons x primes))
+            (setq flag 7)
+            )
+        
+        (setf x (+ x 1))
+        (when (> x n) (return primes))
+    )
+)
+ (format t "~A" (sieve 62))
