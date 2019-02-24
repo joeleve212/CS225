@@ -1,33 +1,3 @@
-;;;Read Chapter 2 of Paul Graham ANSI Common Lisp. It is available online at:
-;;;http://www.paulgraham.com/acl.html
-;;;Scroll down past the book blurbs, chapters 1 and 2 are available near the bottom of the page.
-
-;;;QUESTIONs 1 through 9
-;;From the end of Chapter 2 do all the exercises. These are short exercises that you should first work on paper (or in your head), then you can check them with the Lisp interpreter.  gem125 or cslab recommended.
-
-;;;Lists of numbers
-;;;Question 10 - Write a lisp function (list­of­nums n) that will return a list of numbers (1 2 ... n )
-;;;Question 11 Write a lisp function (remove­multiples k nlist) that will remove the multiples of k from a list of numbers nlist.
-;;;so: (remove­multiples 3 (list­of­nums 6)) should produce (1 2 4 5).
-
-;;;QUESTION 12
-;;;Write a function (sieve n) that produces the prime numbers (and 1) up through n.  [Sound familiar?]
-
-
-;;; Please submit your code as a text file, and a Word/libreoffice/etc document with screenshots of output,please.
-;Work from earlier problems:
-(cons 'a '(b c))
-(cons 'a (cons 'b (cons 'c nil)))
-(list 'a (cons 'b nil) (cons 'c nil))
-
-(defun fourth (car (cdr (cdr (cdr '(1 2 3 4 5 6))))))
-OUTPUT: 4 
-
-(defun askem (string)
-  (format t "~A" string)
-  (read))
-(if (> (x (read)) (y (read))) (x) (y))
-  
 ;QUESTION 10:
 
 (defun listofnums (x)
@@ -38,9 +8,7 @@ OUTPUT: 4
 (write-line "Input a number: ")
 (listofnums (read))
 
-;                              INCLUDE OUTPUT PICTURE FILE
-
-;Question 11 version 1(works):
+;Question 11 version 1:
 
 (defun removemultiples (k nlist)
     (format t "Inputs: ~A ~A ~%" k nlist)
@@ -53,7 +21,7 @@ OUTPUT: 4
     )
     (format t "~%New list: ~A" nlist)
 )
-;Version 2 (also works):
+;Version 2:
 (defun removemultiples (k nlist)
     (loop for num in nlist
         do (
@@ -68,6 +36,8 @@ OUTPUT: 4
 )
 
 (format t "~A" (removemultiples 5 '(10 3 5 10 30 46)))
+
+
 
 ;Full Version of Q10 & Q11 together :
 
@@ -93,7 +63,7 @@ OUTPUT: 4
 
 (format t "New List: ~A" (removemultiples 3 (listofnums 6)))
 
-;       REMEMBER OUTPUT PIC FILE
+
 
 ; Question 12:
 
