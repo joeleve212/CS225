@@ -1,0 +1,180 @@
+(comment 
+
+
+
+Question 1
+How is Clojure lazy? Why is that important?
+- It is designed to fill in the gaps from other languages, not to write entire projects with Clojure
+- That goal defines how this language is used, so it's very important to understand that concept while using it
+
+Question 2
+What does an empty collection act like in a Boolean context?
+Is there a good way to deal with this (if so, how)?
+- the empty collection/set is equivalent to true
+- you could make an if statement/function to check if a a list is empty
+- throw some (not 's at them to convert them to legit booleans
+
+Question 3
+What's the difference between nil and false?
+-  There is none? They act just the same, as false, even though they are not equivalent
+
+Question 4
+Define a function that takes two arguments and returns the
+    greater of the two.
+(defn greaterTwo [a b] 
+    (if (> a b)
+        a
+        b
+    )
+) 
+
+(println (greaterTwo 3 6))
+
+OUTPUT:
+6
+
+Question 5
+Give iterative and recursive definitions of a function that
+
+    a. takes a positive integer and prints that many dots.
+;;Iterative:
+(defn dots [num] 
+    (doseq [x (range num)
+        :while (< x num)]
+        (println ".")
+    )
+)
+(dots 3)
+(println "Version 1 done")
+;;Recursive:
+(defn dotsRecurse [num]
+    (if (= num 1)
+        ()
+        (dotsRecurse (- num 1))
+    )
+    (println ".")
+)
+(dotsRecurse 3)
+
+OUTPUT:
+.
+.
+.
+Version 1 done
+.
+.
+.
+
+    b. takes a list and returns the number of times the a given symbol 
+       occurs in it.
+;; Iterative: 
+(defn itemCount [inList item]
+    (def total 0)
+    (doseq [x (range (count inList))
+        :while (< x (count inList))]
+        (if (= item (nth inList x))
+            (def total (+ total 1))
+            ()
+        )
+    )
+    total
+)
+(println (itemCount '(a b a c d e) 'a))
+
+;; Recursive:
+(defn itemCountRecurse [inList item]
+    (if (= nil (first inList))
+        (def total 0)
+        (if (= item (first inList)) 
+            (def total (+ (itemCountRecurse (drop 1 inList) item) 1))
+            (itemCountRecurse (drop 1 inList) item)
+        )
+    )
+    total
+)
+(println (itemCountRecurse '(a b a c d e) 'a))
+
+OUTPUT:
+2
+2
+	   
+Question 6 
+Write a function called list­of­nums n that will return a list of numbers (1 2 ... n )
+(defn list-of-nums [n]
+    (range 1 (+ n 1))
+)
+(println (list-of-nums 8))
+
+OUTPUT:
+(1 2 3 4 5 6 7 8)
+
+Question 7 
+Write a Clojure function (remove­multiples k nlist) that will remove the multiples of k from a list of numbers nlist. So remove­multiples of 3 from list­of­nums 6 should produce 1 2 4 5.
+(defn list-of-nums [n]
+    (range 1 (+ n 1))
+)
+(println (list-of-nums 8))
+
+(defn removeMultiples [nList n]
+    (filter (fn [x] (not (= 0 (mod x n))))
+    nList)
+)
+
+(println (removeMultiples (list-of-nums 6) 3))
+
+OUTPUT:
+(1 2 3 4 5 6 7 8)
+(1 2 4 5)
+
+
+Question 8
+Write a function 'sieve n' that produces the prime numbers (and 1) up through n.  [Sound familiar?]
+(defn sieve [n]
+    (doseq [x (range 1 (+ 1 n))
+        :while (<= x n)]
+        (def prime true)
+        (doseq [y (range 2 (+ (/ x 2) 1))
+            :while (<= y x)]
+            (if (= 0 (mod x y))
+                (def prime false)
+                ()
+            )
+        )
+        (if prime
+            (print x)
+            ()
+        )
+    )
+)
+(sieve 19)
+
+OUTPUT:
+1235711131719
+
+Question 9
+Implement Fizzbuzz but instead say "want" for multiples of 2 and "cookie" for multiples of 3 and "MeWantCookie" for multiples of 6.  Comment and Explain exactly which method you chose and why/how it works - in language terms (a reference or two might be a good idea...) for full credit. 
+(defn FizzBuzz [maxNum]
+    (doseq [x (range 1 (+ 1 maxNum))]	;;
+        (if (= 0 (mod x 6)) 			;; Checks for divisibility by 6 first b/c that would be taken by a 3 test or 2 test
+            (print " MeWantCookie ")
+            (if (= 0 (mod x 3))			;;Since I don't think there is an else if statement, there I placed the next two if statements
+                (print "cookie ")		;;to respond to false to replace else ifs
+                (if (= 0 (mod x 2))
+                    (print "want ")
+                    (print (str x " ")) 
+                )
+            )
+        )
+    )
+)
+(FizzBuzz 12)
+
+OUTPUT:
+1 want cookie want 5  MeWantCookie 7 want cookie want 11  MeWantCookie
+
+
+Please submit your code answers as a text file, include Word/libreoffice/etc document with screenshots of output,please.
+
+--Yes, question 9 may be tricky to do well.--
+
+)
