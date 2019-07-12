@@ -1,0 +1,21 @@
+*  Bottles of Beer on the Wall
+*  From Peter-Arno Coppen,
+*
+          &fullscan = 1
+          Beer    = " of beer"
+          Wall    = " on the wall"
+          Take    = "Take one down and pass it around"
+*         NL      = CHAR(10)
+          NL      = ". "
+          Bottle  = *?((B1 = (EQ(N1,1) "Just one bottle",
++                                   N1 " bottles"))
++                      (B2 = (EQ(N2,1) "Just one bottle",
++                             (EQ(N2,0) "No more",N2)
++                              " bottles")))
+          Sing    = *?(OUTPUT = B1 Beer Wall NL B1 Beer NL
++                                 Take NL B2 Beer Wall NL)
+          Supply = DUPL("B",20)
+          Count  = ("B" *Count | "")
+          Remove = @N2 "B" @N1
+          Supply ? FENCE Count Remove Bottle Sing FAIL
+END
